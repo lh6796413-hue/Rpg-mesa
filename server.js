@@ -1,2 +1,19 @@
+const express = require("express");
+const path = require("path");
+
+const app = express();
+
+// pasta pública
+app.use(express.static(path.join(__dirname, "public")));
+
+// rota principal
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+// PORTA DO RENDER (OBRIGATÓRIO)
 const PORT = process.env.PORT || 3000;
-http.listen(PORT);
+
+app.listen(PORT, () => {
+  console.log("Servidor rodando na porta " + PORT);
+});
