@@ -1,18 +1,14 @@
-const socket = io();
+const input = document.getElementById("nome");
+const botao = document.getElementById("btn");
 
-const input = document.getElementById("nameInput");
-const btn = document.getElementById("confirm");
-const start = document.getElementById("start");
+input.addEventListener("input", () => {
+  if (input.value.trim().length > 0) {
+    botao.style.display = "inline-block";
+  } else {
+    botao.style.display = "none";
+  }
+});
 
-input.oninput = () => {
-  btn.disabled = input.value.trim().length === 0;
-};
-
-btn.onclick = () => {
-  start.remove();
-  socket.emit("join", input.value.trim());
-};
-
-socket.on("players", players => {
-  console.log(players);
+botao.addEventListener("click", () => {
+  alert("Bem-vindo ao RPG, " + input.value + "!");
 });
